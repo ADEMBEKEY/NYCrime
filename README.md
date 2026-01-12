@@ -55,9 +55,6 @@ pip install -r requirements.txt
 ```
 
 ## User Interface
-
-Explore the [web application](https://nyc-crime-prediction.streamlit.app/) to interact with crime prediction interfaces.
-
 Here's an example of the interface:
 ![User Interface Example](interface.png)
 
