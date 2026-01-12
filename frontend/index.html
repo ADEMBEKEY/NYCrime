@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Crime Predictor | Premium Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="dashboard">
+        <aside class="sidebar">
+            <header>
+                <div class="logo">
+                    <span class="logo-icon">🏙️</span>
+                    <h1>NYC<span>Predict</span></h1>
+                </div>
+                <p>Advanced Crime Intelligence Dashboard</p>
+
+            </header>
+
+            <form id="prediction-form">
+                <div class="form-group">
+                    <label for="date">Incident Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hour">Hour (0-23)</label>
+                        <input type="number" id="hour" min="0" max="23" value="12" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="borough">Borough</label>
+                    <select id="borough" required>
+                        <option value="MANHATTAN">Manhattan</option>
+                        <option value="BROOKLYN">Brooklyn</option>
+                        <option value="QUEENS">Queens</option>
+                        <option value="BRONX">Bronx</option>
+                        <option value="STATEN ISLAND">Staten Island</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="precinct">Precinct ID</label>
+                    <input type="number" id="precinct" placeholder="e.g. 19" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="place">Premises Type</label>
+                    <select id="place" required>
+                        <option value="In public housing">Public Housing</option>
+                        <option value="In park">Park</option>
+                        <option value="In station">Station</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="divider"><span>Victim Profiles</span></div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" value="25" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="race">Race</label>
+                    <select id="race" required>
+                        <option value="BLACK">Black</option>
+                        <option value="WHITE">White</option>
+                        <option value="WHITE HISPANIC">White Hispanic</option>
+                        <option value="BLACK HISPANIC">Black Hispanic</option>
+                        <option value="ASIAN / PACIFIC ISLANDER">Asian / Pacific Islander</option>
+                        <option value="AMERICAN INDIAN/ALASKAN NATIVE">Am. Indian / Alaskan Native</option>
+                    </select>
+                </div>
+
+                <input type="hidden" id="latitude" value="40.7128">
+                <input type="hidden" id="longitude" value="-74.0060">
+                <button type="submit" id="predict-btn">
+                    <span class="btn-text">Run Prediction</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </form>
+        </aside>
+
+        <section class="content">
+            <div class="map-container card">
+                <div class="card-header">
+                    <h2>Target Location</h2>
+                    <p>Click on the map to set coordinates</p>
+                </div>
+                <div id="map"></div>
+                <div class="coords-badge">
+                    Lat: <span id="lat-display">40.7128</span> | Lng: <span id="lng-display">-74.0060</span>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div id="welcome-message" class="card result-placeholder">
+                    <div class="placeholder-content">
+                        <span class="icon">📊</span>
+                        <h3>Ready for Analysis</h3>
+                        <p>Fill in the parameters and click "Run Prediction" to see the crime forecast for the selected
+                            area.</p>
+                    </div>
+                </div>
+
+                <div id="prediction-result" class="card result-card hidden">
+                    <div class="predict-header">
+                        <div class="predict-badge">Primary Risk</div>
+                        <h2 id="result-category">Property</h2>
+                    </div>
+                    <div class="predict-body">
+                        <p>Our model predicts a high probability of crimes related to:</p>
+                        <ul id="subcategory-list">
+                            <!-- Items added via JS -->
+                        </ul>
+                    </div>
+                    <div class="predict-footer">
+                        <div class="confidence">
+                            <span>Confidence Score: <strong id="confidence-value">85%</strong></span>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Risk Breakdown Container -->
+                <div id="risk-breakdown" class="breakdown-container hidden">
+                    <div class="breakdown-header">
+                        <h3>Risk Breakdown</h3>
+                        <p>Detailed analysis of all crime categories</p>
+                    </div>
+                    <div id="all-risks-list" class="risk-grid">
+                        <!-- Additional risk cards added via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

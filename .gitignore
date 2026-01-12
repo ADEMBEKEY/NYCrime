@@ -1,0 +1,35 @@
+# Environments
+venv/
+.venv/
+env/
+.env/
+pyvenv.cfg
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.ipynb_checkpoints/
+
+# Models & Data (Heavy)
+*.joblib
+*.pkl
+*.pb
+*.h5
+*.csv
+application/*.shp
+application/*.shx
+application/*.dbf
+application/*.prj
+application/*.xml
+application/borough/
+
+# OS & IDs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
