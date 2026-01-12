@@ -58,6 +58,3 @@ pip install -r requirements.txt
 Here's an example of the interface:
 ![User Interface Example](interface.png)
 
-## Paper
-
-To document our work, we wrote a research paper that is included in the [repo](https://github.com/Ahmed-BS11/NYC_Crime_prediction/blob/main/docs/nyc_crimes_prediction_paper.pdf).
