@@ -56,5 +56,5 @@ pip install -r requirements.txt
 
 ## User Interface
 Here's an example of the interface:
-![User Interface Example](Capture d'écran 2026-01-12 012950.png)
+
 
