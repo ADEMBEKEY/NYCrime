@@ -22,8 +22,10 @@
 Predicting crime probabilities is crucial for enhancing public safety measures. Our machine learning-based web application leverages historical crime data in New York City to provide users with valuable insights into potential crime occurrences. By incorporating user-specific information, location, and time, the application assists individuals in making informed decisions and taking preventive actions. Whether planning a route, selecting a residential area, or simply staying aware of potential risks, our tool empowers users with a proactive approach to personal safety.
 
 ## Dataset
-
-This work relies on [NYPD Complaint Data Historic Dataset](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i). This dataset includes all valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to 2021. The dataset contains 6901167 complaints and 35 columns including spatial and temporal information about crime occurrences along with their description and penal classification.
+**Source:** NYC Open Data  
+**Name:** NYPD Complaint Data (Historic)  
+**Link:** https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i
+ This dataset includes all valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) from 2006 to 2021. The dataset contains 6901167 complaints and 35 columns including spatial and temporal information about crime occurrences along with their description and penal classification.
 
 ## Notebooks
 
