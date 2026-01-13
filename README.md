@@ -55,6 +55,14 @@ pip install -r requirements.txt
 ```
 
 ## User Interface
-Here's an example of the interface:
+
+Here’s an example of the interface:
+
+### Before running the model
+![UI before running](https://raw.githubusercontent.com/ADEMBEKEY/NYCrime/main/Capture%20d'%C3%A9cran%202026-01-12%20012950.png)
+
+### After running the model
+![UI after running](https://raw.githubusercontent.com/ADEMBEKEY/NYCrime/main/Capture%20d'%C3%A9cran%202026-01-12%20013010.png)
+
 
 
