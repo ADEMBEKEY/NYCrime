@@ -8,7 +8,6 @@
   <h4>
     <a href="#overview">Overview</a> |
     <a href="#architecture">Architecture</a> |
-    <a href="#features">Features</a> |
     <a href="#dataset">Dataset</a> |
     <a href="#machine-learning-model">Machine Learning Model</a> |
     <a href="#installation">Installation</a> |
