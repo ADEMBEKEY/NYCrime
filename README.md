@@ -154,105 +154,6 @@ The following files are required but not included in the repository (due to size
 
 Note: These files are excluded via `.gitignore` due to their size. You'll need to train the model using the provided notebooks or obtain pre-trained models separately.
 
-## Usage
-
-The application can be run in three different modes:
-
-### Option 1: Streamlit Web Application (Recommended for Interactive Use)
-
-Run the interactive Streamlit application:
-
-```bash
-cd application
-streamlit run main.py
-```
-
-**Features:**
-- Interactive map for location selection
-- Text-based address search
-- Real-time input forms for user demographics
-- Instant crime predictions with category breakdown
-- Visual map display with selected location marker
-
-**How to Use:**
-1. Select input method: Map selection or address search
-2. If using map: Click on the NYC map to select a location
-3. If using address: Type a destination in NYC
-4. Fill in the sidebar form:
-   - Gender, Race, Age
-   - Date and Hour of interest
-   - Place type (park, public housing, station)
-5. Click "Predict" to see results
-6. View the predicted crime category and related crime types
-
-### Option 2: FastAPI REST API (For Integration)
-
-Run the FastAPI backend server:
-
-```bash
-cd api
-python main.py
-# Or using uvicorn directly:
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-**API Endpoints:**
-
-- **POST `/api/predict`** - Get crime predictions
-  ```json
-  Request Body:
-  {
-    "date": "2024-01-15",
-    "hour": 14,
-    "latitude": 40.7128,
-    "longitude": -74.0060,
-    "place": "In park",
-    "age": 25,
-    "race": "WHITE",
-    "gender": "Male",
-    "precinct": 19,
-    "borough": "MANHATTAN"
-  }
-  
-  Response:
-  {
-    "top_prediction": {
-      "id": 2,
-      "category": "PROPERTY",
-      "subcategories": ["BURGLARY", "PETIT LARCENY", ...],
-      "confidence": 0.65
-    },
-    "all_predictions": [...]
-  }
-  ```
-
-- **GET `/api/health`** - Check API health status
-  ```json
-  Response:
-  {
-    "status": "ok",
-    "model_loaded": true
-  }
-  ```
-
-### Option 3: Modern Web Dashboard
-
-The FastAPI server also serves a modern frontend dashboard at `http://localhost:8000/`
-
-**Features:**
-- Premium UI with animated backgrounds
-- Interactive Leaflet map
-- Comprehensive risk breakdown for all crime categories
-- Confidence scores visualization
-- Responsive design for all devices
-
-### Testing the Model
-
-Run the model test script to verify the model is loaded correctly:
-
-```bash
-python test_model.py
-```
 
 ## Notebooks
 
@@ -279,12 +180,6 @@ The repository includes Jupyter notebooks for data analysis and model developmen
   - Hyperparameter tuning
   - Feature importance analysis
   - Model serialization
-
-### Running the Notebooks
-
-```bash
-jupyter notebook notebooks/
-```
 
 ## Technologies
 
@@ -329,7 +224,6 @@ pip install -r requirements.txt
 The application provides three different interfaces:
 
 ### 1. Streamlit Interface
-![Streamlit App Interface](Capture%20d%27écran%202026-01-12%20012950.png)
 
 Interactive web application with:
 - Sidebar form for user input
@@ -441,24 +335,3 @@ NYCrime/
 8. **Model Evaluation**: Assess using confusion matrix, ROC curves, F1-scores
 9. **Model Serialization**: Save best model as `lgbm.joblib`
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is available for educational and research purposes.
-
-## Acknowledgments
-
-- NYC Open Data for providing the NYPD crime dataset
-- Streamlit for the interactive web framework
-- The open-source community for excellent geospatial libraries
-
-## Contact
-
-For questions or feedback, please open an issue on GitHub.
-
----
-
-**Note**: This application is for educational and informational purposes only. Crime predictions are based on historical data and should not be the sole factor in making safety decisions.
