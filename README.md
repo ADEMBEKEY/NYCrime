@@ -67,4 +67,5 @@ Here’s an example of the interface:
 ![UI after running](https://raw.githubusercontent.com/ADEMBEKEY/NYCrime/main/Capture%20d'%C3%A9cran%202026-01-12%20013010.png)
 
 
+![User Interface Example](images/ui_interface_example.png)
 
